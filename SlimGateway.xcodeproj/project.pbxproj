@@ -8,8 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		8127AE052098537E00262FB0 /* SlimGateway.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8127ADFB2098537E00262FB0 /* SlimGateway.framework */; };
-		8127AE0A2098537E00262FB0 /* SlimGatewayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8127AE092098537E00262FB0 /* SlimGatewayTests.swift */; };
 		8127AE0C2098537E00262FB0 /* SlimGateway.h in Headers */ = {isa = PBXBuildFile; fileRef = 8127ADFE2098537E00262FB0 /* SlimGateway.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8127AE17209856AF00262FB0 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8127AE16209856AF00262FB0 /* Protocols.swift */; };
+		8127AE192098576A00262FB0 /* ResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8127AE182098576A00262FB0 /* ResultTests.swift */; };
+		8127AE1B2098583900262FB0 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8127AE1A2098583900262FB0 /* Result.swift */; };
+		8127AE1D20985A1300262FB0 /* URLResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8127AE1C20985A1300262FB0 /* URLResource.swift */; };
+		8127AE1F2098610B00262FB0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8127AE1E2098610B00262FB0 /* Extensions.swift */; };
+		8127AE232098655A00262FB0 /* URLResourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8127AE222098655A00262FB0 /* URLResourceTests.swift */; };
+		8127AE252098674D00262FB0 /* greeting.json in Resources */ = {isa = PBXBuildFile; fileRef = 8127AE242098674D00262FB0 /* greeting.json */; };
+		8127AE272098691E00262FB0 /* HiAndGoodbye.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8127AE262098691E00262FB0 /* HiAndGoodbye.swift */; };
+		8127AE2920986C8800262FB0 /* FileGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8127AE2820986C8800262FB0 /* FileGateway.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,8 +35,16 @@
 		8127ADFE2098537E00262FB0 /* SlimGateway.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SlimGateway.h; sourceTree = "<group>"; };
 		8127ADFF2098537E00262FB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8127AE042098537E00262FB0 /* SlimGatewayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SlimGatewayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8127AE092098537E00262FB0 /* SlimGatewayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlimGatewayTests.swift; sourceTree = "<group>"; };
 		8127AE0B2098537E00262FB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8127AE16209856AF00262FB0 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		8127AE182098576A00262FB0 /* ResultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTests.swift; sourceTree = "<group>"; };
+		8127AE1A2098583900262FB0 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		8127AE1C20985A1300262FB0 /* URLResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLResource.swift; sourceTree = "<group>"; };
+		8127AE1E2098610B00262FB0 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		8127AE222098655A00262FB0 /* URLResourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLResourceTests.swift; sourceTree = "<group>"; };
+		8127AE242098674D00262FB0 /* greeting.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = greeting.json; sourceTree = "<group>"; };
+		8127AE262098691E00262FB0 /* HiAndGoodbye.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiAndGoodbye.swift; sourceTree = "<group>"; };
+		8127AE2820986C8800262FB0 /* FileGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileGateway.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +87,10 @@
 		8127ADFD2098537E00262FB0 /* SlimGateway */ = {
 			isa = PBXGroup;
 			children = (
+				8127AE16209856AF00262FB0 /* Protocols.swift */,
+				8127AE1A2098583900262FB0 /* Result.swift */,
+				8127AE1C20985A1300262FB0 /* URLResource.swift */,
+				8127AE1E2098610B00262FB0 /* Extensions.swift */,
 				8127ADFE2098537E00262FB0 /* SlimGateway.h */,
 				8127ADFF2098537E00262FB0 /* Info.plist */,
 			);
@@ -80,10 +100,22 @@
 		8127AE082098537E00262FB0 /* SlimGatewayTests */ = {
 			isa = PBXGroup;
 			children = (
-				8127AE092098537E00262FB0 /* SlimGatewayTests.swift */,
+				8127AE182098576A00262FB0 /* ResultTests.swift */,
+				8127AE222098655A00262FB0 /* URLResourceTests.swift */,
+				8127AE2A209880E300262FB0 /* Mocks */,
 				8127AE0B2098537E00262FB0 /* Info.plist */,
 			);
 			path = SlimGatewayTests;
+			sourceTree = "<group>";
+		};
+		8127AE2A209880E300262FB0 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				8127AE262098691E00262FB0 /* HiAndGoodbye.swift */,
+				8127AE2820986C8800262FB0 /* FileGateway.swift */,
+				8127AE242098674D00262FB0 /* greeting.json */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,6 +180,7 @@
 				TargetAttributes = {
 					8127ADFA2098537E00262FB0 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 0930;
 					};
 					8127AE032098537E00262FB0 = {
 						CreatedOnToolsVersion = 9.3;
@@ -184,6 +217,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8127AE252098674D00262FB0 /* greeting.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +228,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8127AE1B2098583900262FB0 /* Result.swift in Sources */,
+				8127AE1D20985A1300262FB0 /* URLResource.swift in Sources */,
+				8127AE17209856AF00262FB0 /* Protocols.swift in Sources */,
+				8127AE1F2098610B00262FB0 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,7 +239,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8127AE0A2098537E00262FB0 /* SlimGatewayTests.swift in Sources */,
+				8127AE192098576A00262FB0 /* ResultTests.swift in Sources */,
+				8127AE272098691E00262FB0 /* HiAndGoodbye.swift in Sources */,
+				8127AE2920986C8800262FB0 /* FileGateway.swift in Sources */,
+				8127AE232098655A00262FB0 /* URLResourceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,10 +380,11 @@
 		8127AE102098537E00262FB0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 3Y3H33SRAT;
+				DEVELOPMENT_TEAM = ZV4G4K6D9Y;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -356,6 +398,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.juanvillaescusa.SlimGateway;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -364,10 +407,11 @@
 		8127AE112098537E00262FB0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 3Y3H33SRAT;
+				DEVELOPMENT_TEAM = ZV4G4K6D9Y;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -389,6 +433,7 @@
 		8127AE132098537E00262FB0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3Y3H33SRAT;
 				INFOPLIST_FILE = SlimGatewayTests/Info.plist;
@@ -407,6 +452,7 @@
 		8127AE142098537E00262FB0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3Y3H33SRAT;
 				INFOPLIST_FILE = SlimGatewayTests/Info.plist;
