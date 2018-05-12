@@ -18,6 +18,10 @@
 		8127AE252098674D00262FB0 /* greeting.json in Resources */ = {isa = PBXBuildFile; fileRef = 8127AE242098674D00262FB0 /* greeting.json */; };
 		8127AE272098691E00262FB0 /* HiAndGoodbye.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8127AE262098691E00262FB0 /* HiAndGoodbye.swift */; };
 		8127AE2920986C8800262FB0 /* FileGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8127AE2820986C8800262FB0 /* FileGateway.swift */; };
+		81FABEB7209F0E270092EEAC /* DefaultGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FABEB6209F0E270092EEAC /* DefaultGateway.swift */; };
+		81FABEB9209F0E790092EEAC /* GatewayConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FABEB8209F0E790092EEAC /* GatewayConfiguration.swift */; };
+		81FABEBD209F0FF10092EEAC /* DefaultGatewayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FABEBC209F0FF10092EEAC /* DefaultGatewayTests.swift */; };
+		81FABEBF209F20F60092EEAC /* stations.json in Resources */ = {isa = PBXBuildFile; fileRef = 81FABEBE209F20F60092EEAC /* stations.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +49,10 @@
 		8127AE242098674D00262FB0 /* greeting.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = greeting.json; sourceTree = "<group>"; };
 		8127AE262098691E00262FB0 /* HiAndGoodbye.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiAndGoodbye.swift; sourceTree = "<group>"; };
 		8127AE2820986C8800262FB0 /* FileGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileGateway.swift; sourceTree = "<group>"; };
+		81FABEB6209F0E270092EEAC /* DefaultGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultGateway.swift; sourceTree = "<group>"; };
+		81FABEB8209F0E790092EEAC /* GatewayConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatewayConfiguration.swift; sourceTree = "<group>"; };
+		81FABEBC209F0FF10092EEAC /* DefaultGatewayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultGatewayTests.swift; sourceTree = "<group>"; };
+		81FABEBE209F20F60092EEAC /* stations.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stations.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +98,8 @@
 				8127AE16209856AF00262FB0 /* Protocols.swift */,
 				8127AE1A2098583900262FB0 /* Result.swift */,
 				8127AE1C20985A1300262FB0 /* URLResource.swift */,
+				81FABEB6209F0E270092EEAC /* DefaultGateway.swift */,
+				81FABEB8209F0E790092EEAC /* GatewayConfiguration.swift */,
 				8127AE1E2098610B00262FB0 /* Extensions.swift */,
 				8127ADFE2098537E00262FB0 /* SlimGateway.h */,
 				8127ADFF2098537E00262FB0 /* Info.plist */,
@@ -100,6 +110,7 @@
 		8127AE082098537E00262FB0 /* SlimGatewayTests */ = {
 			isa = PBXGroup;
 			children = (
+				81FABEBC209F0FF10092EEAC /* DefaultGatewayTests.swift */,
 				8127AE182098576A00262FB0 /* ResultTests.swift */,
 				8127AE222098655A00262FB0 /* URLResourceTests.swift */,
 				8127AE2A209880E300262FB0 /* Mocks */,
@@ -114,6 +125,7 @@
 				8127AE262098691E00262FB0 /* HiAndGoodbye.swift */,
 				8127AE2820986C8800262FB0 /* FileGateway.swift */,
 				8127AE242098674D00262FB0 /* greeting.json */,
+				81FABEBE209F20F60092EEAC /* stations.json */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -217,6 +229,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81FABEBF209F20F60092EEAC /* stations.json in Resources */,
 				8127AE252098674D00262FB0 /* greeting.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,9 +242,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8127AE1B2098583900262FB0 /* Result.swift in Sources */,
+				81FABEB7209F0E270092EEAC /* DefaultGateway.swift in Sources */,
 				8127AE1D20985A1300262FB0 /* URLResource.swift in Sources */,
 				8127AE17209856AF00262FB0 /* Protocols.swift in Sources */,
 				8127AE1F2098610B00262FB0 /* Extensions.swift in Sources */,
+				81FABEB9209F0E790092EEAC /* GatewayConfiguration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,6 +257,7 @@
 				8127AE192098576A00262FB0 /* ResultTests.swift in Sources */,
 				8127AE272098691E00262FB0 /* HiAndGoodbye.swift in Sources */,
 				8127AE2920986C8800262FB0 /* FileGateway.swift in Sources */,
+				81FABEBD209F0FF10092EEAC /* DefaultGatewayTests.swift in Sources */,
 				8127AE232098655A00262FB0 /* URLResourceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

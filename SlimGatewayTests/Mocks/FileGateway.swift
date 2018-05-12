@@ -17,7 +17,7 @@ class FileGateway: Gateway {
         case parseError
     }
     
-    func request<T>(resource: URLResource<T>, completion: ((Result<T>) -> Void)?) {
+    func request<T>(urlResource resource: URLResource<T>, completion: ((Result<T>) -> Void)?) {
         guard resource.url.isFileURL else {
             completion?(.failure(GatewayError.notFileURL))
             return

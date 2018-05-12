@@ -9,5 +9,5 @@
 import Foundation
 
 public protocol Gateway {
-    func request<T>(resource: URLResource<T>, completion: ((Result<T>) -> Void)?)
+    func request<T>(urlResource: URLResource<T>, completion: ((Result<T>) -> Void)?)
 }

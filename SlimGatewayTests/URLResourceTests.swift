@@ -19,7 +19,7 @@ class URLResourceTests: XCTestCase {
         // sample resource
         let url = Bundle(for: type(of: self)).url(forResource: "greeting", withExtension: "json")!
         resource = URLResource(url: url) { result in
-            guard let json = result as? JSONDictionay else {
+            guard let json = result as? JSONDictionary else {
                 return nil
             }
             return HiAndGoodBye(json: json)
@@ -29,7 +29,7 @@ class URLResourceTests: XCTestCase {
     
     func testParse() {
         let expectation = self.expectation(description: "Correct parse")
-        gateway.request(resource: resource) { result in
+        gateway.request(urlResource: resource) { result in
             XCTAssertTrue(result.isSuccessful)
             if let value = result.value {
                 XCTAssertTrue(value.hi == "Hello world")

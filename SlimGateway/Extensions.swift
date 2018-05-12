@@ -16,3 +16,16 @@ extension TimeInterval {
         return 10
     }
 }
+
+extension URLRequest {
+    init<T>(resource: URLResource<T>, configuration: GatewayConfiguration? = nil) {
+        var url = resource.url
+        if let baseURL = configuration?.baseURL {
+            url = baseURL.appendingPathComponent(resource.url.path)
+        }
+        self.init(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: resource.timeOut)
+        if let token = configuration?.authToken {
+            setValue(token, forHTTPHeaderField: "Authorization")
+        }
+    }
+}

@@ -6,7 +6,7 @@
 //  Copyright © 2018 Juanjo García Villaescusa. All rights reserved.
 //
 
-typealias JSONDictionay = [String: Any]
+typealias JSONDictionary = [String: Any]
 
 struct HiAndGoodBye {
     let hi: String
@@ -14,7 +14,7 @@ struct HiAndGoodBye {
 }
 
 extension HiAndGoodBye {
-    init?(json: JSONDictionay) {
+    init?(json: JSONDictionary) {
         guard let hi = json["greeting"] as? String,
             let goodbye = json["farewell"] as? String else {
                 return nil
