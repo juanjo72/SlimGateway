@@ -19,9 +19,7 @@ class URLResourceTests: XCTestCase {
         // sample resource
         let url = Bundle(for: type(of: self)).url(forResource: "greeting", withExtension: "json")!
         resource = URLResource(url: url) { result in
-            guard let json = result as? JSONDictionary else {
-                return nil
-            }
+            guard let json = result as? JSONDictionary else { return nil }
             return HiAndGoodBye(json: json)
         }
         gateway = FileGateway()
@@ -41,5 +39,4 @@ class URLResourceTests: XCTestCase {
         }
         wait(for: [expectation], timeout: 1)
     }
-    
 }

@@ -11,30 +11,25 @@ import XCTest
 
 class DefaultGatewayTests: XCTestCase {
     
+    var gateway: Gateway = SlimGateway()
+    
     lazy var resource: URLResource<JSONDictionary> = {
         let url = Bundle(for: type(of: self)).url(forResource: "stations", withExtension: "json")!
-        let resource = URLResource<JSONDictionary>(url: url, httpMethod: .get, params: nil, timeOut: TimeInterval.shortTimeOut) { response in
+        let resource = URLResource<JSONDictionary>(url: url) { response in
             guard let json = response as? JSONDictionary else { return nil }
             return json
         }
         return resource
     }()
     
-    var gateway: Gateway!
+    var apiKey: String {
+        let file = Bundle(for: type(of: self)).path(forResource: "keys", ofType: "plist")!
+        let keys = NSDictionary(contentsOfFile: file)!
+        return keys["apikey"] as! String
+    }
     
     override func setUp() {
         super.setUp()
-        let config = GatewayConfiguration()
-        gateway = DefaultGateway(configuration: config)
-    }
-    
-    func testConfiguration() {
-        let configuration = GatewayConfiguration(baseURL: URL(string: "http://wservice.viabicing.cat")!)
-        let gateway = DefaultGateway(configuration: configuration)
-        XCTAssertTrue(gateway.configuration?.baseURL?.absoluteString == "http://wservice.viabicing.cat")
-        let tokenConfig = GatewayConfiguration(baseURL: gateway.configuration?.baseURL, authToken: "xxx")
-        gateway.configuration = tokenConfig
-        XCTAssertTrue(gateway.configuration?.authToken == "xxx")
     }
     
     func testRequest() {
@@ -57,30 +52,27 @@ class DefaultGatewayTests: XCTestCase {
     
     func testAuthRequest() {
         let expectation = self.expectation(description: "Auth request")
-        let baseURL = URL(string: "https://api.xceed.me")!
-        let configuration = GatewayConfiguration(baseURL: baseURL, authToken: "eb46e449554e81b8beb3155313aaca")
-        let gateway = DefaultGateway(configuration: configuration)
-        let url = URL(string: "/b2c/v4/cities")!
-        let resource = URLResource<[JSONDictionary]>(url: url, httpMethod: .get, params: nil, timeOut: TimeInterval.shortTimeOut) { response in
-            guard let json = response as? [JSONDictionary] else {
-                return nil
-            }
+        let url = URL(string: "https://api.xceed.me/b2c/v4/cities/44/events")!
+        let params: Parameters = ["category": 1, "start": 0, "limit": 1]
+        
+        let httpHeaders = ["Authorization" : apiKey]
+        let resource = URLResource<[JSONDictionary]>(url: url, httpHeaders: httpHeaders, parameters: params) { response in
+            guard let json = response as? [JSONDictionary] else { return nil }
             return json
         }
         gateway.request(urlResource: resource) { result in
             switch result {
-            case .success(let json):
-                XCTAssertTrue(json.count == 45)
+            case .success:
+                break
             case .failure:
                 XCTFail()
             }
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: TimeInterval.shortTimeOut)
+        wait(for: [expectation], timeout: .shortTimeOut)
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
 }

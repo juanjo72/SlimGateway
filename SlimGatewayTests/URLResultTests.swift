@@ -9,13 +9,13 @@
 import XCTest
 @testable import SlimGateway
 
-class ResultTests: XCTestCase {
+class URLResultTests: XCTestCase {
     enum ErrorType: Error {
         case test
     }
     
     func testSuccess() {
-        let result: Result<Bool> = .success(true)
+        let result: URLResult<Bool> = .success(true)
         XCTAssertTrue(result.isSuccessful)
         XCTAssertFalse(result.isFailure)
         XCTAssertTrue(result.value == true)
@@ -23,7 +23,7 @@ class ResultTests: XCTestCase {
     }
     
     func testFailure() {
-        let result: Result<Bool> = .failure(ErrorType.test)
+        let result: URLResult<Bool> = .failure(ErrorType.test)
         XCTAssertTrue(result.isFailure)
         XCTAssertFalse(result.isSuccessful)
         XCTAssertNil(result.value)

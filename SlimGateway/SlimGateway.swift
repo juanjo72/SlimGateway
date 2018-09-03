@@ -8,9 +8,11 @@
 
 import Foundation
 
-public final class DefaultGateway: Gateway {
-    
-    var configuration: GatewayConfiguration?
+public protocol Gateway {
+    func request<T>(urlResource: URLResource<T>, completion: ((URLResult<T>) -> Void)?)
+}
+
+public final class SlimGateway: Gateway {
     
     private lazy var sessionConfiguration: URLSessionConfiguration = {
         let config = URLSessionConfiguration.ephemeral
@@ -21,28 +23,21 @@ public final class DefaultGateway: Gateway {
         let session = URLSession(configuration: sessionConfiguration)
         return session
     }()
-
     
-    // MARK: Lifecycle
+    public init() {}
     
-    init(configuration: GatewayConfiguration? = nil) {
-        self.configuration = configuration
-    }
+    // MARK: Gateway
     
-    // MARK: Public
-    
-    public func request<T>(urlResource: URLResource<T>, completion: ((Result<T>) -> Void)?) {
-        let urlRequest = URLRequest(resource: urlResource, configuration: configuration)
-        session.dataTask(with: urlRequest) { data, response, error in
-            
+    public func request<T>(urlResource: URLResource<T>, completion: ((URLResult<T>) -> Void)?) {
+        
+        let encoding = urlResource.parametersEncoding ?? urlResource.httpMethod.defaultEncoding
+        guard let urlRequest = encoding.encode(resource: urlResource) else {
+            completion?(.failure(GatewayError.invalidResource))
+            return
+        }
+        
+        session.dataTask(with: urlRequest) { data, _, error in
             if let data = data {
-                
-                guard let response = response as? HTTPURLResponse,
-                    response.statusCode == 200 else {
-                        completion?(.failure(GatewayError.serverError))
-                        return
-                }
-                
                 if let json = try? JSONSerialization.jsonObject(with: data, options: []),
                     let resource = urlResource.parse(json) {
                     completion?(.success(resource))
@@ -51,16 +46,17 @@ public final class DefaultGateway: Gateway {
                 }
                 return
             }
-            if let error = error {
-                completion?(.failure(error))
+            if let _ = error {
+                completion?(.failure(GatewayError.serverError))
             }
         }
         .resume()
     }
 }
 
-extension DefaultGateway {
+extension SlimGateway {
     public enum GatewayError: Error {
+        case invalidResource
         case serverError
         case unrecognizedFormat
     }

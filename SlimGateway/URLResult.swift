@@ -8,12 +8,12 @@
 
 import Foundation
 
-public enum Result<T> {
+public enum URLResult<T> {
     case success(T)
     case failure(Error)
 }
 
-extension Result {
+extension URLResult {
     public var isSuccessful: Bool {
         switch self {
         case .success:
@@ -33,7 +33,7 @@ extension Result {
     }
 }
 
-extension Result {
+extension URLResult {
     public var value: T? {
         switch self {
         case .success(let value):
