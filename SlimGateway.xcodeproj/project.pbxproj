@@ -20,6 +20,7 @@
 		812CCDAA213BC23800564191 /* ParametersEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812CCDA9213BC23800564191 /* ParametersEncoding.swift */; };
 		812CCDAE213BD90E00564191 /* URLQueryRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812CCDAD213BD90E00564191 /* URLQueryRepresentable.swift */; };
 		8184D266213CFB3E006C033E /* keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8184D265213CFB3E006C033E /* keys.plist */; };
+		81EB167E214D867C0018A398 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EB167D214D867C0018A398 /* Post.swift */; };
 		81FABEB7209F0E270092EEAC /* SlimGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FABEB6209F0E270092EEAC /* SlimGateway.swift */; };
 		81FABEBD209F0FF10092EEAC /* SlimGatewayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FABEBC209F0FF10092EEAC /* SlimGatewayTests.swift */; };
 		81FABEBF209F20F60092EEAC /* stations.json in Resources */ = {isa = PBXBuildFile; fileRef = 81FABEBE209F20F60092EEAC /* stations.json */; };
@@ -53,6 +54,7 @@
 		812CCDA9213BC23800564191 /* ParametersEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersEncoding.swift; sourceTree = "<group>"; };
 		812CCDAD213BD90E00564191 /* URLQueryRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLQueryRepresentable.swift; sourceTree = "<group>"; };
 		8184D265213CFB3E006C033E /* keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = keys.plist; sourceTree = "<group>"; };
+		81EB167D214D867C0018A398 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		81FABEB6209F0E270092EEAC /* SlimGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlimGateway.swift; sourceTree = "<group>"; };
 		81FABEBC209F0FF10092EEAC /* SlimGatewayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlimGatewayTests.swift; sourceTree = "<group>"; };
 		81FABEBE209F20F60092EEAC /* stations.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stations.json; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				81FABEBC209F0FF10092EEAC /* SlimGatewayTests.swift */,
 				8127AE182098576A00262FB0 /* URLResultTests.swift */,
 				8127AE222098655A00262FB0 /* URLResourceTests.swift */,
+				81EB167F214D86940018A398 /* Entity */,
 				8184D267213CFCF9006C033E /* Mocks */,
 				8184D265213CFB3E006C033E /* keys.plist */,
 				8127AE0B2098537E00262FB0 /* Info.plist */,
@@ -127,7 +130,6 @@
 		8184D267213CFCF9006C033E /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				8127AE262098691E00262FB0 /* HiAndGoodbye.swift */,
 				8127AE2820986C8800262FB0 /* FileGateway.swift */,
 				8127AE242098674D00262FB0 /* greeting.json */,
 				81FABEBE209F20F60092EEAC /* stations.json */,
@@ -141,6 +143,15 @@
 				812CCDA5213AFE4100564191 /* urlcomponents.playground */,
 			);
 			path = Playgrounds;
+			sourceTree = "<group>";
+		};
+		81EB167F214D86940018A398 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				8127AE262098691E00262FB0 /* HiAndGoodbye.swift */,
+				81EB167D214D867C0018A398 /* Post.swift */,
+			);
+			path = Entity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,10 +216,11 @@
 				TargetAttributes = {
 					8127ADFA2098537E00262FB0 = {
 						CreatedOnToolsVersion = 9.3;
-						LastSwiftMigration = 0930;
+						LastSwiftMigration = 1000;
 					};
 					8127AE032098537E00262FB0 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -271,6 +283,7 @@
 				8127AE192098576A00262FB0 /* URLResultTests.swift in Sources */,
 				8127AE272098691E00262FB0 /* HiAndGoodbye.swift in Sources */,
 				8127AE2920986C8800262FB0 /* FileGateway.swift in Sources */,
+				81EB167E214D867C0018A398 /* Post.swift in Sources */,
 				81FABEBD209F0FF10092EEAC /* SlimGatewayTests.swift in Sources */,
 				8127AE232098655A00262FB0 /* URLResourceTests.swift in Sources */,
 			);
@@ -429,7 +442,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -455,7 +468,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.juanvillaescusa.SlimGateway;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -474,7 +487,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.juanvillaescusa.SlimGatewayTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -493,7 +506,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.juanvillaescusa.SlimGatewayTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

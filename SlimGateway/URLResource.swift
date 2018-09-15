@@ -13,6 +13,7 @@ public enum HttpMethod: String {
     case get = "GET"
     case post = "POST"
     case put = "PUT"
+    case patch = "PATCH"
     case delete = "DELETE"
 }
 
@@ -21,7 +22,7 @@ extension HttpMethod {
         switch self {
         case .get, .delete:
             return URLEncoding()
-        case .put, .post:
+        case .put, .post, .patch:
             return HttpBodyEncoding()
         }
     }

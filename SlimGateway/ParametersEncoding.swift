@@ -23,6 +23,7 @@ public final class URLEncoding: ParametersEncoding {
         }
         guard let url = urlComponents.url else { return nil }
         var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: resource.timeOut)
+        request.httpMethod = resource.httpMethod.rawValue
         resource.httpHeaders?.forEach { header in
             request.setValue(header.value, forHTTPHeaderField: header.key)
         }
@@ -38,6 +39,7 @@ public final class HttpBodyEncoding: ParametersEncoding {
         }
         guard let params = resource.parameters else { return request }
         guard let data = try? JSONSerialization.data(withJSONObject: params, options: []) else { return nil }
+        request.httpMethod = resource.httpMethod.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = data
         return request
