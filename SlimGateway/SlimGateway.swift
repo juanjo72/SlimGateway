@@ -20,7 +20,7 @@ public final class SlimGateway: Gateway {
     }()
     
     private lazy var session: URLSession = {
-        let session = URLSession(configuration: sessionConfiguration)
+        let session = URLSession.init(configuration: sessionConfiguration, delegate: nil, delegateQueue: nil)
         return session
     }()
     
@@ -28,36 +28,46 @@ public final class SlimGateway: Gateway {
     
     // MARK: Gateway
     
+    /**
+     Requests a resource from its url.
+     
+     - parameter urlResource: Resource to load.
+     - parameter completion: Completion callback.
+     */
     public func request<T>(urlResource: URLResource<T>, completion: ((URLResult<T>) -> Void)?) {
         
-        let encoding = urlResource.parametersEncoding ?? urlResource.httpMethod.defaultEncoding
-        guard let urlRequest = encoding.encode(resource: urlResource) else {
+        let encoder = urlResource.encoder ?? urlResource.httpMethod.defaultEncoder
+        guard let urlRequest = encoder.encode(resource: urlResource) else {
             completion?(.failure(GatewayError.invalidResource))
             return
         }
         
         session.dataTask(with: urlRequest) { data, _, error in
-            if let data = data {
-                if let json = try? JSONSerialization.jsonObject(with: data, options: []),
-                    let resource = urlResource.parse(json) {
-                    completion?(.success(resource))
+            var result: URLResult<T>?
+            defer {
+                DispatchQueue.main.async {
+                    guard let result = result else { return }
+                    completion?(result)
+                }
+            }
+            if let error = error {
+                if (error as NSError).code == .noConnection {
+                    result = .failure(GatewayError.noConnection)
                 } else {
-                    completion?(.failure(GatewayError.unrecognizedFormat))
+                    result = .failure(GatewayError.serverError)
                 }
                 return
             }
-            if let _ = error {
-                completion?(.failure(GatewayError.serverError))
+            if let data = data {
+                if let json = try? JSONSerialization.jsonObject(with: data, options: []),
+                    let resource = urlResource.parse(json) {
+                    result = .success(resource)
+                } else {
+                    result = .failure(GatewayError.unexpectedResponse)
+                }
             }
         }
         .resume()
     }
 }
 
-extension SlimGateway {
-    public enum GatewayError: Error {
-        case invalidResource
-        case serverError
-        case unrecognizedFormat
-    }
-}

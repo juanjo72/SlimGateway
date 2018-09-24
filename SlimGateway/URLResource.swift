@@ -6,6 +6,7 @@
 //  Copyright © 2018 Juanjo García Villaescusa. All rights reserved.
 //
 
+public typealias JSONDictionary = [String: Any]
 public typealias Parameters = [String: URLQueryRepresentable]
 public typealias HttpHeaders = [String: String]
 
@@ -18,12 +19,12 @@ public enum HttpMethod: String {
 }
 
 extension HttpMethod {
-    var defaultEncoding: ParametersEncoding {
+    var defaultEncoder: URLRequestEncoder.Type {
         switch self {
         case .get, .delete:
-            return URLEncoding()
+            return URLQueryEncoder.self
         case .put, .post, .patch:
-            return HttpBodyEncoding()
+            return JSONBodyEncoder.self
         }
     }
 }
@@ -33,16 +34,16 @@ public struct URLResource<T> {
     public var httpMethod: HttpMethod
     public var httpHeaders: HttpHeaders?
     public var parameters: Parameters?
-    public var parametersEncoding: ParametersEncoding?
+    public var encoder: URLRequestEncoder.Type?
     public var timeOut: TimeInterval
     public var parse: (Any) -> T?
     
-    public init(url: URL, httpMethod: HttpMethod = .get, httpHeaders: HttpHeaders? = nil, parameters: Parameters? = nil, parametersEncoding: ParametersEncoding? = nil,  timeOut: TimeInterval = .shortTimeOut, parse: @escaping (Any) -> T?) {
+    public init(url: URL, httpMethod: HttpMethod = .get, httpHeaders: HttpHeaders? = nil, parameters: Parameters? = nil, encoder: URLRequestEncoder.Type? = nil,  timeOut: TimeInterval = .shortTimeOut, parse: @escaping (Any) -> T?) {
         self.url = url
         self.httpMethod = httpMethod
         self.httpHeaders = httpHeaders
         self.parameters = parameters
-        self.parametersEncoding = parametersEncoding
+        self.encoder = encoder
         self.timeOut = timeOut
         self.parse = parse
     }

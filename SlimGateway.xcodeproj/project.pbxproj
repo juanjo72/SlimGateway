@@ -17,8 +17,9 @@
 		8127AE252098674D00262FB0 /* greeting.json in Resources */ = {isa = PBXBuildFile; fileRef = 8127AE242098674D00262FB0 /* greeting.json */; };
 		8127AE272098691E00262FB0 /* HiAndGoodbye.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8127AE262098691E00262FB0 /* HiAndGoodbye.swift */; };
 		8127AE2920986C8800262FB0 /* FileGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8127AE2820986C8800262FB0 /* FileGateway.swift */; };
-		812CCDAA213BC23800564191 /* ParametersEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812CCDA9213BC23800564191 /* ParametersEncoding.swift */; };
+		812CCDAA213BC23800564191 /* URLRequestEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812CCDA9213BC23800564191 /* URLRequestEncoder.swift */; };
 		812CCDAE213BD90E00564191 /* URLQueryRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812CCDAD213BD90E00564191 /* URLQueryRepresentable.swift */; };
+		813B2ACC2158CD1A000E4FCD /* GatewayError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813B2ACB2158CD1A000E4FCD /* GatewayError.swift */; };
 		8184D266213CFB3E006C033E /* keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8184D265213CFB3E006C033E /* keys.plist */; };
 		81EB167E214D867C0018A398 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EB167D214D867C0018A398 /* Post.swift */; };
 		81FABEB7209F0E270092EEAC /* SlimGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FABEB6209F0E270092EEAC /* SlimGateway.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		810B353221562577006E5AA1 /* URLEncoder.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = URLEncoder.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		8127ADFB2098537E00262FB0 /* SlimGateway.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SlimGateway.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8127ADFE2098537E00262FB0 /* SlimGateway.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SlimGateway.h; sourceTree = "<group>"; };
 		8127ADFF2098537E00262FB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -51,8 +53,9 @@
 		8127AE262098691E00262FB0 /* HiAndGoodbye.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiAndGoodbye.swift; sourceTree = "<group>"; };
 		8127AE2820986C8800262FB0 /* FileGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileGateway.swift; sourceTree = "<group>"; };
 		812CCDA5213AFE4100564191 /* urlcomponents.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = urlcomponents.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		812CCDA9213BC23800564191 /* ParametersEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersEncoding.swift; sourceTree = "<group>"; };
+		812CCDA9213BC23800564191 /* URLRequestEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestEncoder.swift; sourceTree = "<group>"; };
 		812CCDAD213BD90E00564191 /* URLQueryRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLQueryRepresentable.swift; sourceTree = "<group>"; };
+		813B2ACB2158CD1A000E4FCD /* GatewayError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatewayError.swift; sourceTree = "<group>"; };
 		8184D265213CFB3E006C033E /* keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = keys.plist; sourceTree = "<group>"; };
 		81EB167D214D867C0018A398 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		81FABEB6209F0E270092EEAC /* SlimGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlimGateway.swift; sourceTree = "<group>"; };
@@ -102,10 +105,11 @@
 			isa = PBXGroup;
 			children = (
 				81FABEB6209F0E270092EEAC /* SlimGateway.swift */,
+				813B2ACB2158CD1A000E4FCD /* GatewayError.swift */,
 				8127AE1C20985A1300262FB0 /* URLResource.swift */,
+				812CCDA9213BC23800564191 /* URLRequestEncoder.swift */,
 				812CCDAD213BD90E00564191 /* URLQueryRepresentable.swift */,
 				8127AE1A2098583900262FB0 /* URLResult.swift */,
-				812CCDA9213BC23800564191 /* ParametersEncoding.swift */,
 				8127AE1E2098610B00262FB0 /* TimeIntervalExtensions.swift */,
 				8127ADFE2098537E00262FB0 /* SlimGateway.h */,
 				8127ADFF2098537E00262FB0 /* Info.plist */,
@@ -140,6 +144,7 @@
 		8184D268213CFD76006C033E /* Playgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				810B353221562577006E5AA1 /* URLEncoder.playground */,
 				812CCDA5213AFE4100564191 /* urlcomponents.playground */,
 			);
 			path = Playgrounds;
@@ -269,9 +274,10 @@
 			files = (
 				8127AE1B2098583900262FB0 /* URLResult.swift in Sources */,
 				81FABEB7209F0E270092EEAC /* SlimGateway.swift in Sources */,
+				813B2ACC2158CD1A000E4FCD /* GatewayError.swift in Sources */,
 				8127AE1D20985A1300262FB0 /* URLResource.swift in Sources */,
 				812CCDAE213BD90E00564191 /* URLQueryRepresentable.swift in Sources */,
-				812CCDAA213BC23800564191 /* ParametersEncoding.swift in Sources */,
+				812CCDAA213BC23800564191 /* URLRequestEncoder.swift in Sources */,
 				8127AE1F2098610B00262FB0 /* TimeIntervalExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

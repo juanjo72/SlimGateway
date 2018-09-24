@@ -7,11 +7,8 @@ var str = "Hello, playground"
 let url = URL.init(string: "http://https://swapi.co/api/people/1?search=luke")!
 
 var components = URLComponents.init(url: url, resolvingAgainstBaseURL: false)!
-
 components.host
 components.path
-
-
 
 
 let test: [String: CustomStringConvertible] = ["name": "Andrés", "age": 47]

@@ -90,11 +90,11 @@ class DefaultGatewayTests: XCTestCase {
     func testPOST() {
         let expectation = self.expectation(description: "POST request")
         let url = URL(string: "https://jsonplaceholder.typicode.com/posts")!
-        var post = Parameters.init()
+        var post = Parameters()
         post["userId"] = 1
         post["title"] = "foo"
         post["body"] = "bar"
-        let newPostResource = URLResource<Post>(url: url, httpMethod: .post, parameters: post, parametersEncoding: HttpBodyEncoding()) { result in
+        let newPostResource = URLResource<Post>(url: url, httpMethod: .post, parameters: post) { result in
             guard let json = result as? JSONDictionary else { return nil }
             return Post(json: json)
         }
