@@ -6,7 +6,8 @@
 //  Copyright © 2018 Juanjo García Villaescusa. All rights reserved.
 //
 
-typealias ErrorCode = Int
+public typealias ErrorDetails = JSONDictionary
+internal typealias ErrorCode = Int
 
 extension ErrorCode {
     static var noConnection: ErrorCode {
@@ -15,8 +16,8 @@ extension ErrorCode {
 }
 
 public enum GatewayError: Error {
-    case invalidResource
-    case serverError
-    case unexpectedResponse
     case noConnection
+    case serverError
+    case invalidResource
+    case endPointError(ErrorDetails)
 }

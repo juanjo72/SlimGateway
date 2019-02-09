@@ -46,6 +46,29 @@ class DefaultGatewayTests: XCTestCase {
         wait(for: [expectation], timeout: TimeInterval.shortTimeOut)
     }
     
+    func testErrorRequest() {
+        let expectation = self.expectation(description: "Bad request")
+        let url = URL(string: "https://api.xceed.me/b2c/v4/artists/635/users")!
+        let resource = URLResource<JSONDictionary>(url: url) { response in
+            guard let json = response as? JSONDictionary else { return nil }
+            return json
+        }
+        gateway.request(urlResource: resource) { result in
+            switch result {
+            case .success:
+                XCTFail()
+            case .failure(let error):
+                if case GatewayError.endPointError(let details) = error {
+                    XCTAssertTrue((details["code"] as? Int) == 0)
+                } else {
+                    XCTFail()
+                }
+            }
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: .shortTimeOut)
+    }
+    
     func testAuthRequest() {
         let expectation = self.expectation(description: "Auth request")
         let url = URL(string: "https://samples.openweathermap.org/data/2.5/forecast")!
@@ -90,11 +113,11 @@ class DefaultGatewayTests: XCTestCase {
     func testPOST() {
         let expectation = self.expectation(description: "POST request")
         let url = URL(string: "https://jsonplaceholder.typicode.com/posts")!
-        var post = Parameters()
-        post["userId"] = 1
-        post["title"] = "foo"
-        post["body"] = "bar"
-        let newPostResource = URLResource<Post>(url: url, httpMethod: .post, parameters: post) { result in
+        var newPost = Parameters()
+        newPost["userId"] = 1
+        newPost["title"] = "foo"
+        newPost["body"] = "bar"
+        let newPostResource = URLResource<Post>(url: url, httpMethod: .post, parameters: newPost) { result in
             guard let json = result as? JSONDictionary else { return nil }
             return Post(json: json)
         }

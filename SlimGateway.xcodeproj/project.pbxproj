@@ -20,6 +20,7 @@
 		812CCDAA213BC23800564191 /* URLRequestEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812CCDA9213BC23800564191 /* URLRequestEncoder.swift */; };
 		812CCDAE213BD90E00564191 /* URLQueryRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812CCDAD213BD90E00564191 /* URLQueryRepresentable.swift */; };
 		813B2ACC2158CD1A000E4FCD /* GatewayError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813B2ACB2158CD1A000E4FCD /* GatewayError.swift */; };
+		81676A3221592481009EF97C /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81676A3121592481009EF97C /* Album.swift */; };
 		8184D266213CFB3E006C033E /* keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8184D265213CFB3E006C033E /* keys.plist */; };
 		81EB167E214D867C0018A398 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EB167D214D867C0018A398 /* Post.swift */; };
 		81FABEB7209F0E270092EEAC /* SlimGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FABEB6209F0E270092EEAC /* SlimGateway.swift */; };
@@ -56,6 +57,7 @@
 		812CCDA9213BC23800564191 /* URLRequestEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestEncoder.swift; sourceTree = "<group>"; };
 		812CCDAD213BD90E00564191 /* URLQueryRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLQueryRepresentable.swift; sourceTree = "<group>"; };
 		813B2ACB2158CD1A000E4FCD /* GatewayError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatewayError.swift; sourceTree = "<group>"; };
+		81676A3121592481009EF97C /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		8184D265213CFB3E006C033E /* keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = keys.plist; sourceTree = "<group>"; };
 		81EB167D214D867C0018A398 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		81FABEB6209F0E270092EEAC /* SlimGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlimGateway.swift; sourceTree = "<group>"; };
@@ -105,8 +107,8 @@
 			isa = PBXGroup;
 			children = (
 				81FABEB6209F0E270092EEAC /* SlimGateway.swift */,
-				813B2ACB2158CD1A000E4FCD /* GatewayError.swift */,
 				8127AE1C20985A1300262FB0 /* URLResource.swift */,
+				813B2ACB2158CD1A000E4FCD /* GatewayError.swift */,
 				812CCDA9213BC23800564191 /* URLRequestEncoder.swift */,
 				812CCDAD213BD90E00564191 /* URLQueryRepresentable.swift */,
 				8127AE1A2098583900262FB0 /* URLResult.swift */,
@@ -155,6 +157,7 @@
 			children = (
 				8127AE262098691E00262FB0 /* HiAndGoodbye.swift */,
 				81EB167D214D867C0018A398 /* Post.swift */,
+				81676A3121592481009EF97C /* Album.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				8127AE2920986C8800262FB0 /* FileGateway.swift in Sources */,
 				81EB167E214D867C0018A398 /* Post.swift in Sources */,
 				81FABEBD209F0FF10092EEAC /* SlimGatewayTests.swift in Sources */,
+				81676A3221592481009EF97C /* Album.swift in Sources */,
 				8127AE232098655A00262FB0 /* URLResourceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

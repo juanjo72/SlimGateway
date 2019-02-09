@@ -10,6 +10,7 @@ import Foundation
 import SlimGateway
 
 class FileGateway: Gateway {
+    
     enum GatewayError: Error {
         case notFileURL
         case unableToRead
@@ -17,23 +18,23 @@ class FileGateway: Gateway {
         case parseError
     }
     
-    func request<T>(urlResource resource: URLResource<T>, completion: ((URLResult<T>) -> Void)?) {
+    func request<T>(urlResource resource: URLResource<T>, completion:  @escaping (URLResult<T>) -> Void) {
         guard resource.url.isFileURL else {
-            completion?(.failure(GatewayError.notFileURL))
+            completion(.failure(GatewayError.notFileURL))
             return
         }
         guard let data = try? Data(contentsOf: resource.url) else {
-            completion?(.failure(GatewayError.unableToRead))
+            completion(.failure(GatewayError.unableToRead))
             return
         }
         guard let json = try? JSONSerialization.jsonObject(with: data, options: [.allowFragments]) else {
-            completion?(.failure(GatewayError.invalidJSON))
+            completion(.failure(GatewayError.invalidJSON))
             return
         }
         if let value = resource.parse(json) {
-            completion?(.success(value))
+            completion(.success(value))
         } else {
-            completion?(.failure(GatewayError.parseError))
+            completion(.failure(GatewayError.parseError))
         }
     }
 }

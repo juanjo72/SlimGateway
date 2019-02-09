@@ -22,6 +22,8 @@ pod install
 
 ## Usage
 
+### Basic GET Request
+
 Import the framework:
 
 ```swift
@@ -69,6 +71,32 @@ gateway.request(urlResource: resource) { result in
     }
 }
 ```
+
+### POST Request
+
+To create a new album we set up a resource as the following:
+
+```swift
+let url = URL(string: "https://jsonplaceholder.typicode.com/albums")!
+var newAlbum = Parameters()
+newAlbum["userId"] = 1
+newAlbum["title"] = "foo"
+let newAlbumResource = URLResource<Album>(url: url, httpMethod: .post, parameters: newAlbum) { result in
+    guard let json = result as? JSONDictionary else { return nil }
+    return Album(json: json)
+}
+let gateway = SlimGateway()
+gateway.request(urlResource: resource) { result in
+    switch result {
+    case .success(let album):
+        print(album.id)
+    case .failure:
+        print("some error")
+    }
+}
+```
+
+
 ## License
 
 `SlimGateway` is distributed under the terms and conditions of the [MIT license](LICENSE.md).

@@ -7,7 +7,7 @@
 //
 
 public typealias JSONDictionary = [String: Any]
-public typealias Parameters = [String: URLQueryRepresentable]
+public typealias Parameters = [String: Any]
 public typealias HttpHeaders = [String: String]
 
 public enum HttpMethod: String {
@@ -38,7 +38,7 @@ public struct URLResource<T> {
     public var timeOut: TimeInterval
     public var parse: (Any) -> T?
     
-    public init(url: URL, httpMethod: HttpMethod = .get, httpHeaders: HttpHeaders? = nil, parameters: Parameters? = nil, encoder: URLRequestEncoder.Type? = nil,  timeOut: TimeInterval = .shortTimeOut, parse: @escaping (Any) -> T?) {
+    public init(url: URL, httpMethod: HttpMethod = .get, httpHeaders: HttpHeaders? = nil, parameters: Parameters? = nil, encoder: URLRequestEncoder.Type? = nil, timeOut: TimeInterval = .shortTimeOut, parse: @escaping (Any) -> T?) {
         self.url = url
         self.httpMethod = httpMethod
         self.httpHeaders = httpHeaders
