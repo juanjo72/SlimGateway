@@ -72,7 +72,16 @@ public final class SlimGateway: Gateway {
                 }
                 return
             }
-            // parse error
+            // empty 200 response
+            if let data = data, data.isEmpty {
+                if let resource = urlResource.parse(()) {
+                    result = .success(resource)
+                } else {
+                    result = .failure(GatewayError.invalidResource)
+                }
+                return
+            }
+            // json reponse
             if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) {
                 if let resource = urlResource.parse(json) {
                     result = .success(resource)
@@ -81,6 +90,7 @@ public final class SlimGateway: Gateway {
                 }
                 return
             }
+            
             result = .failure(GatewayError.serverError)
             }
             .resume()
