@@ -14,6 +14,8 @@ public protocol Gateway {
 
 public final class SlimGateway: Gateway {
     
+    let debug: Bool
+    
     // MARK: Properties
     
     private lazy var session: URLSession = {
@@ -27,7 +29,9 @@ public final class SlimGateway: Gateway {
     
     // MARK: Lifecycle
     
-    public init() {}
+    public init(debug: Bool = false) {
+        self.debug = debug
+    }
     
     // MARK: Gateway
     
@@ -43,6 +47,10 @@ public final class SlimGateway: Gateway {
         guard let urlRequest = encoder.encode(resource: urlResource) else {
             completion(.failure(GatewayError.invalidResource))
             return
+        }
+        
+        if debug {
+            print("👻 \(urlResource.url.absoluteString)")
         }
         
         session.dataTask(with: urlRequest) { data, response, error in

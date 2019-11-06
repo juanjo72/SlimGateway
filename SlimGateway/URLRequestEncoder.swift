@@ -12,7 +12,7 @@ public protocol URLRequestEncoder {
 
 public final class URLQueryEncoder: URLRequestEncoder {
     public static func encode<T>(resource: URLResource<T>) -> URLRequest? {
-        guard var urlComponents = URLComponents(url: resource.url, resolvingAgainstBaseURL: false) else { return nil }
+        guard var urlComponents = URLComponents(url: resource.url, resolvingAgainstBaseURL: true) else { return nil }
         if let params = resource.parameters as? [String: URLQueryRepresentable] {
             let items = params.map { URLQueryItem(name: $0.key, value: $0.value.urlParamValue) }
             if let queryItems = urlComponents.queryItems {
