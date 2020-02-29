@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name                = "SlimGateway"
-  spec.version             = "1.0.2"
+  spec.version             = "1.0.3"
   spec.summary             = "Extremely simple Restful Network Layer."
   spec.homepage            = "https://github.com/juanjo72/SlimGateway"
   spec.license             = { :type => 'MIT' }
