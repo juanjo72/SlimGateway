@@ -49,18 +49,18 @@ public final class SlimGateway: Gateway {
             return
         }
         
-        if debug {
-            print("👻 \(urlResource.url.absoluteString)")
+        let isDebugging = self.debug
+        if isDebugging {
+            print("👻 \(urlRequest)")
         }
         
         session.dataTask(with: urlRequest) { data, response, error in
             var result: URLResult<T>?
+            
             defer {
-                DispatchQueue.main.async {
-                    guard let result = result else { return }
-                    completion(result)
-                }
+                completion(result ?? URLResult.failure(GatewayError.serverError))
             }
+            
             // detecting http errors
             if let error = error {
                 if (error as NSError).code == .noConnection {
@@ -75,6 +75,9 @@ public final class SlimGateway: Gateway {
                     let json = try? JSONSerialization.jsonObject(with: data, options: []),
                     let details = json as? JSONDictionary  {
                     result = .failure(GatewayError.endPointError(details))
+                    if isDebugging {
+                        print("💀 \(details)")
+                    }
                 } else {
                     result = .failure(GatewayError.serverError)
                 }
