@@ -58,7 +58,10 @@ public final class SlimGateway: Gateway {
             var result: URLResult<T>?
             
             defer {
-                completion(result ?? URLResult.failure(GatewayError.serverError))
+                DispatchQueue.main.async {
+                    guard let result = result else { return }
+                    completion(result)
+                }
             }
             
             // detecting http errors
