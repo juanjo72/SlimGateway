@@ -10,7 +10,7 @@ import Foundation
 
 public enum URLResult<T> {
     case success(T)
-    case failure(Error)
+    case failure(GatewayError)
 }
 
 extension URLResult {

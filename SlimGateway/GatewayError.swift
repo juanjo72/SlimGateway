@@ -6,7 +6,7 @@
 //  Copyright © 2018 Juanjo García Villaescusa. All rights reserved.
 //
 
-public typealias ErrorDetails = JSONDictionary
+public typealias ErrorDetails = [String: Any]
 internal typealias ErrorCode = Int
 
 extension ErrorCode {
@@ -17,6 +17,7 @@ extension ErrorCode {
 
 public enum GatewayError: Error {
     case noConnection
+    case unauthorized
     case serverError
     case invalidResource
     case endPointError(ErrorDetails)
