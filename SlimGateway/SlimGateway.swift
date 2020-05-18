@@ -74,9 +74,11 @@ public final class SlimGateway: Gateway {
                 return
             }
             if let response = response as? HTTPURLResponse, response.statusCode >= 400 {
-                if let data = data,
+                if response.statusCode == 401 {
+                    result = .failure(GatewayError.unauthorized)
+                } else if let data = data,
                     let json = try? JSONSerialization.jsonObject(with: data, options: []),
-                    let details = json as? JSONDictionary  {
+                    let details = json as? [String: Any]  {
                     result = .failure(GatewayError.endPointError(details))
                     if isDebugging {
                         print("💀 \(details)")

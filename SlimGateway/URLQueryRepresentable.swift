@@ -12,24 +12,24 @@ public protocol URLQueryRepresentable {
 
 extension Int: URLQueryRepresentable {
     public var urlParamValue: String {
-        return String(self)
+        String(self)
     }
 }
 
 extension Double: URLQueryRepresentable {
     public var urlParamValue: String {
-        return String(self)
+        String(self)
     }
 }
 
 extension String: URLQueryRepresentable {
     public var urlParamValue: String {
-        return self
+        self
     }
 }
 
 extension Bool: URLQueryRepresentable {
     public var urlParamValue: String {
-        return self ? "true" : "false"
+        self ? "true" : "false"
     }
 }
