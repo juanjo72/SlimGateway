@@ -8,15 +8,13 @@
 
 import Foundation
 
-public protocol Gateway {
-    func request<T>(urlResource: URLResource<T>, completion: @escaping (URLResult<T>) -> Void)
-}
-
-public final class SlimGateway: Gateway {
+public final class SlimGateway {
     
-    let debug: Bool
+    // MARK: Public Properties
     
-    // MARK: Properties
+    public var debug: Bool = false
+    
+    // MARK: Private Properties
     
     private lazy var session: URLSession = {
         var sessionConfiguration: URLSessionConfiguration = {
@@ -27,38 +25,33 @@ public final class SlimGateway: Gateway {
         return session
     }()
     
-    // MARK: Lifecycle
-    
-    public init(debug: Bool = false) {
-        self.debug = debug
-    }
-    
-    // MARK: Gateway
+    // MARK: Public Methods
     
     /**
      Requests a resource from its url.
      
      - parameter urlResource: Resource to load.
+     - parameter completionQueue: Dispatch queue where results should be sent.
      - parameter completion: Completion callback.
      */
-    public func request<T>(urlResource: URLResource<T>, completion: @escaping (URLResult<T>) -> Void) {
+    public func request<T>(urlResource: URLResource<T>, completionQueue: DispatchQueue = DispatchQueue.main, completion: @escaping (Result<T, GatewayError>) -> Void) {
         
-        let encoder = urlResource.encoder ?? urlResource.httpMethod.defaultEncoder
-        guard let urlRequest = encoder.encode(resource: urlResource) else {
+        let isDebugging = self.debug
+        let requestEncoder = urlResource.encoder ?? urlResource.httpMethod.defaultEncoder
+        guard let urlRequest = requestEncoder.encode(resource: urlResource) else {
             completion(.failure(GatewayError.invalidResource))
             return
         }
         
-        let isDebugging = self.debug
         if isDebugging {
             print("👻 \(urlRequest)")
         }
         
         session.dataTask(with: urlRequest) { data, response, error in
-            var result: URLResult<T>?
+            var result: Result<T, GatewayError>?
             
             defer {
-                DispatchQueue.main.async {
+                completionQueue.async {
                     guard let result = result else { return }
                     completion(result)
                 }
@@ -71,44 +64,38 @@ public final class SlimGateway: Gateway {
                 } else {
                     result = .failure(GatewayError.serverError)
                 }
+                if isDebugging {
+                    print("💀 \(error.localizedDescription)")
+                }
                 return
             }
             if let response = response as? HTTPURLResponse, response.statusCode >= 400 {
                 if response.statusCode == 401 {
                     result = .failure(GatewayError.unauthorized)
                 } else if let data = data,
-                    let json = try? JSONSerialization.jsonObject(with: data, options: []),
-                    let details = json as? [String: Any]  {
+                          let details = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
                     result = .failure(GatewayError.endPointError(details))
-                    if isDebugging {
-                        print("💀 \(details)")
-                    }
                 } else {
                     result = .failure(GatewayError.serverError)
                 }
-                return
-            }
-            // empty 200 response
-            if let data = data, data.isEmpty {
-                if let resource = urlResource.parse(()) {
-                    result = .success(resource)
-                } else {
-                    result = .failure(GatewayError.invalidResource)
+                if isDebugging {
+                    print("💀 \(response)")
                 }
                 return
             }
-            // json reponse
-            if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) {
-                if let resource = urlResource.parse(json) {
-                    result = .success(resource)
+            
+            // decoding
+            if let data = data {
+                if let value = urlResource.decoder(data) {
+                    result = .success(value)
                 } else {
-                    result = .failure(GatewayError.invalidResource)
+                    result = .failure(.invalidResource)
                 }
                 return
             }
             
             result = .failure(GatewayError.serverError)
-            }
-            .resume()
+        }
+        .resume()
     }
 }

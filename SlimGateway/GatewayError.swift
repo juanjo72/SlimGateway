@@ -6,7 +6,6 @@
 //  Copyright © 2018 Juanjo García Villaescusa. All rights reserved.
 //
 
-public typealias ErrorDetails = [String: Any]
 internal typealias ErrorCode = Int
 
 extension ErrorCode {
@@ -20,5 +19,22 @@ public enum GatewayError: Error {
     case unauthorized
     case serverError
     case invalidResource
-    case endPointError(ErrorDetails)
+    case endPointError([String: Any])
+}
+
+extension GatewayError: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        switch self {
+        case .noConnection:
+            return "No Internet"
+        case .unauthorized:
+            return "Unauthorized access"
+        case .serverError:
+            return "Server Error"
+        case .invalidResource:
+            return "Invalid Resource"
+        case .endPointError(let details):
+            return details.description
+        }
+    }
 }

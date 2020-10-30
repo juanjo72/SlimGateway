@@ -9,173 +9,125 @@
 import XCTest
 @testable import SlimGateway
 
+struct Album {
+    let id: Int
+    let userId: Int
+    let title: String
+}
+
+extension Album: Decodable {}
+
+struct User {
+    let id: Int
+    let name: String
+    let username: String
+}
+
+extension User: Decodable {}
+
 class DefaultGatewayTests: XCTestCase {
     
-    var gateway: Gateway = SlimGateway()
-    
-    var apiKey: String {
-        let file = Bundle(for: type(of: self)).path(forResource: "keys", ofType: "plist")!
-        let keys = NSDictionary(contentsOfFile: file)!
-        return keys["apikey"] as! String
-    }
+    var gateway = SlimGateway()
     
     override func setUp() {
         super.setUp()
     }
     
-    func testRequest() {
-        let expectation = self.expectation(description: "Gateway request")
-        let url = Bundle(for: type(of: self)).url(forResource: "stations", withExtension: "json")!
-        let resource = URLResource<JSONDictionary>(url: url) { response in
-            guard let json = response as? JSONDictionary else { return nil }
-            return json
-        }
-        gateway.request(urlResource: resource) { result in
-            switch result {
-            case .success(let json):
-                guard let stations = json["stations"] as? [JSONDictionary] else {
-                    XCTFail()
-                    return
-                }
-                XCTAssertTrue(stations.count == 463)
-            case .failure:
-                XCTFail()
-            }
-            expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: TimeInterval.shortTimeOut)
-    }
-    
-    func testErrorRequest() {
-        let expectation = self.expectation(description: "Bad request")
-        let url = URL(string: "https://api.xceed.me/b2c/v4/artists/635/users")!
-        let resource = URLResource<JSONDictionary>(url: url) { response in
-            guard let json = response as? JSONDictionary else { return nil }
-            return json
-        }
-        gateway.request(urlResource: resource) { result in
-            switch result {
-            case .success:
-                XCTFail()
-            case .failure(let error):
-                if case GatewayError.endPointError(let details) = error {
-                    XCTAssertTrue((details["code"] as? Int) == 0)
-                } else {
-                    XCTFail()
-                }
-            }
-            expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: .shortTimeOut)
-    }
-    
-    func testAuthRequest() {
-        let expectation = self.expectation(description: "Auth request")
-        let url = URL(string: "https://samples.openweathermap.org/data/2.5/forecast")!
-        var params = Parameters()
-        params["q"] = "London,uk"
-        params["appid"] = apiKey
-        let resource = URLResource<JSONDictionary>(url: url, parameters: params) { response in
-            guard let json = response as? JSONDictionary else { return nil }
-            return json
-        }
-        gateway.request(urlResource: resource) { result in
-            switch result {
-            case .success:
-                break
-            case .failure:
-                XCTFail()
-            }
-            expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: .shortTimeOut)
-    }
-    
-    func testGET() {
-        let expectation = self.expectation(description: "GET request")
-        let url = URL(string: "https://jsonplaceholder.typicode.com/posts")!
-        let postsResource = URLResource<[Post]>(url: url, httpMethod: .get) { response in
-            guard let json = response as? [JSONDictionary] else { return nil }
-            return json.compactMap(Post.init)
-        }
-        gateway.request(urlResource: postsResource) { result in
-            switch result {
-            case .success(let posts):
-                XCTAssertTrue(posts.count == 100)
-            case .failure:
-                XCTFail()
-            }
-            expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: .shortTimeOut)
-    }
-    
-    func testPOST() {
-        let expectation = self.expectation(description: "POST request")
-        let url = URL(string: "https://jsonplaceholder.typicode.com/posts")!
-        var newPost = Parameters()
-        newPost["userId"] = 1
-        newPost["title"] = "foo"
-        newPost["body"] = "bar"
-        let newPostResource = URLResource<Post>(url: url, httpMethod: .post, parameters: newPost) { result in
-            guard let json = result as? JSONDictionary else { return nil }
-            return Post(json: json)
-        }
-        gateway.request(urlResource: newPostResource) { result in
-            switch result {
-            case .success(let post):
-                XCTAssertTrue(post.postId == 101)
-                XCTAssertTrue(post.userId == 1)
-            case .failure:
-                XCTFail()
-            }
-            expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: .shortTimeOut)
-    }
-    
-    func testPUT() {
-        let expectation = self.expectation(description: "PUT request")
-        let url = URL(string: "https://jsonplaceholder.typicode.com/posts/1")!
-        var postToUpdate = Parameters.init()
-        postToUpdate["id"] = 1
-        postToUpdate["userId"] = 1
-        postToUpdate["title"] = "foo"
-        postToUpdate["body"] = "bar"
-        let newPostResource = URLResource<Post>(url: url, httpMethod: .put, parameters: postToUpdate) { result in
-            guard let json = result as? JSONDictionary else { return nil }
-            return Post(json: json)
-        }
-        gateway.request(urlResource: newPostResource) { result in
-            switch result {
-            case .success(let post):
-                XCTAssertTrue(post.postId == 1)
-                XCTAssertTrue(post.userId == 1)
-            case .failure:
-                XCTFail()
-            }
-            expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: .shortTimeOut)
-    }
-    
-    func testDELETE() {
-        let expectation = self.expectation(description: "DELETE request")
-        let url = URL(string: "https://jsonplaceholder.typicode.com/posts/1")!
-        let newPostResource = URLResource<Bool>(url: url, httpMethod: .delete) { result in
-            guard let _ = result as? JSONDictionary else { return nil }
-            return true
-        }
-        gateway.request(urlResource: newPostResource) { result in
-            if result.isFailure {
-                XCTFail()
-            }
-            expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: .shortTimeOut)
-    }
-    
     override func tearDown() {
         super.tearDown()
+    }
+
+    func testSlimGateway_whenResourceIsCorrect_shouldReturnEntities() {
+        let expectation = self.expectation(description: "GET request")
+        let url = URL(string: "https://jsonplaceholder.typicode.com/albums")!
+        let resource = URLResource<[Album]>(url: url, httpMethod: .get) { data in
+            try? JSONDecoder().decode([Album].self, from: data)
+        }
+        gateway.request(urlResource: resource) { result in
+            switch result {
+            case .success(let albums):
+                XCTAssertTrue(albums.count == 100)
+            case .failure:
+                XCTFail()
+            }
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: .shortTimeOut)
+    }
+    
+    func testSlimGateway_whenResourceIsIncorrect_shouldReturnInvalidResourceError() {
+        let expectation = self.expectation(description: "GET request")
+        let url = URL(string: "https://jsonplaceholder.typicode.com/users")!
+        let resource = URLResource<[Album]>(url: url, httpMethod: .get) { data in
+            try? JSONDecoder().decode([Album].self, from: data)
+        }
+        gateway.request(urlResource: resource) { result in
+            if case let Result.failure(error) = result {
+                if case GatewayError.invalidResource = error {} else {
+                    XCTFail()
+                }
+            } else {
+                XCTFail()
+            }
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: .shortTimeOut)
+    }
+
+    func testSlimGateway_whenAccessUnauthorized_shouldReturnAnauthorizedError() {
+        let expectation = self.expectation(description: "Server access")
+        let url = URL(string: "https://httpstat.us/401")!
+        let resource = URLResource<[[String: Any]]>(url: url, httpMethod: .get) { data in
+            try? JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]]
+        }
+        gateway.request(urlResource: resource) { result in
+            if case let Result.failure(error) = result {
+                if case GatewayError.unauthorized = error {} else {
+                    XCTFail()
+                }
+            } else {
+                XCTFail()
+            }
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: .shortTimeOut)
+    }
+    
+    func testSlimGateway_whenServerError_shouldReturnServerError() {
+        let expectation = self.expectation(description: "Server access")
+        let url = URL(string: "https://httpstat.us/500")!
+        let resource = URLResource<[[String: Any]]>(url: url, httpMethod: .get) { data in
+            try? JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]]
+        }
+        gateway.request(urlResource: resource) { result in
+            if case let Result.failure(error) = result {
+                if case GatewayError.serverError = error {} else {
+                    XCTFail("Should be Server Error")
+                }
+            } else {
+                XCTFail()
+            }
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: .shortTimeOut)
+    }
+    
+    func testSlimGateway_whenTimeOut_shouldReturnServerError() {
+        let expectation = self.expectation(description: "Server access")
+        let url = URL(string: "https://httpstat.us/200?sleep=1000")!
+        let resource = URLResource<[[String: Any]]>(url: url, httpMethod: .get, timeOut: 0.5) { data in
+            try? JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]]
+        }
+        gateway.request(urlResource: resource) { result in
+            if case let Result.failure(error) = result {
+                if case GatewayError.serverError = error {} else {
+                    XCTFail("Should be Server Error")
+                }
+            } else {
+                XCTFail()
+            }
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: .longTimeOut)
     }
 }
