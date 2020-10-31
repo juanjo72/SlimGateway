@@ -30,7 +30,7 @@ Import the framework:
 import SlimGateway
 ```
 
-Define your entity and create a failable initializer to process a json dictionary:
+Define your entity
 
 ```swift
 struct Album: Encodable {
@@ -39,7 +39,7 @@ struct Album: Encodable {
 }
 ```
 
-Create the URLResource that includes the mapping closure:
+Create the URLResource that includes the decoding closure:
 
 ```swift
 let source = URL(string: "https://jsonplaceholder.typicode.com/albums")!
