@@ -13,14 +13,13 @@ public protocol URLRequestEncoder {
 public final class URLQueryEncoder: URLRequestEncoder {
     public static func encode<T>(resource: URLResource<T>) -> URLRequest? {
         guard var urlComponents = URLComponents(url: resource.url, resolvingAgainstBaseURL: true) else { return nil }
-        if let params = resource.parameters as? [String: URLQueryRepresentable] {
-            let items = params.map { URLQueryItem(name: $0.key, value: $0.value.urlParamValue) }
-            if let queryItems = urlComponents.queryItems {
-                urlComponents.queryItems = queryItems + items
-            } else {
-                urlComponents.queryItems = items
-            }
+        var userParams = [URLQueryItem]()
+        if let parameters = resource.parameters {
+            guard (parameters.values.allSatisfy { $0 is URLQueryRepresentable }) else { return nil }
+            userParams = parameters.map { URLQueryItem(name: $0.key, value: ($0.value as? URLQueryRepresentable)?.urlParamValue) }
         }
+        userParams += urlComponents.queryItems ?? []
+        urlComponents.queryItems = userParams.isEmpty ? nil : userParams
         guard let url = urlComponents.url else { return nil }
         var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: resource.timeOut)
         request.httpMethod = resource.httpMethod.rawValue

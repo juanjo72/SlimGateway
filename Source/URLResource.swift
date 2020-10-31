@@ -6,10 +6,6 @@
 //  Copyright © 2018 Juanjo García Villaescusa. All rights reserved.
 //
 
-public typealias JSONDictionary = [String: Any]
-public typealias Parameters = [String: Any]
-public typealias HttpHeaders = [String: String]
-
 public enum HttpMethod: String {
     case get = "GET"
     case post = "POST"
@@ -32,19 +28,19 @@ extension HttpMethod {
 public struct URLResource<T> {
     public var url: URL
     public var httpMethod: HttpMethod
-    public var httpHeaders: HttpHeaders?
-    public var parameters: Parameters?
+    public var httpHeaders: [String: String]?
+    public var parameters: [String: Any]?
     public var encoder: URLRequestEncoder.Type?
     public var timeOut: TimeInterval
-    public var parse: (Any) -> T?
+    public var decoder: (Data) -> T?
     
-    public init(url: URL, httpMethod: HttpMethod = .get, httpHeaders: HttpHeaders? = nil, parameters: Parameters? = nil, encoder: URLRequestEncoder.Type? = nil, timeOut: TimeInterval = .shortTimeOut, parse: @escaping (Any) -> T?) {
+    public init(url: URL, httpMethod: HttpMethod = .get, httpHeaders: [String: String]? = nil, parameters: [String: Any]? = nil, encoder: URLRequestEncoder.Type? = nil, timeOut: TimeInterval = .shortTimeOut, decoder: @escaping (Data) -> T?) {
         self.url = url
         self.httpMethod = httpMethod
         self.httpHeaders = httpHeaders
         self.parameters = parameters
         self.encoder = encoder
         self.timeOut = timeOut
-        self.parse = parse
+        self.decoder = decoder
     }
 }
