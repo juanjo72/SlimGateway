@@ -9,22 +9,6 @@
 import XCTest
 @testable import SlimGateway
 
-struct Album {
-    let id: Int
-    let userId: Int
-    let title: String
-}
-
-extension Album: Decodable {}
-
-struct User {
-    let id: Int
-    let name: String
-    let username: String
-}
-
-extension User: Decodable {}
-
 class DefaultGatewayTests: XCTestCase {
     
     var gateway = SlimGateway()

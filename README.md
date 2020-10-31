@@ -33,18 +33,9 @@ import SlimGateway
 Define your entity and create a failable initializer to process a json dictionary:
 
 ```swift
-struct Album {
+struct Album: Encodable {
     let id: Int
     let title: String
-}
-
-extension Album {
-    init?(json: JSONDictionary) {
-        guard let id = json["id"] as? Int,
-            let title = json["title"] as? String else { return nil }
-        self.id = id
-        self.title = title
-    }
 }
 ```
 
@@ -52,9 +43,8 @@ Create the URLResource that includes the mapping closure:
 
 ```swift
 let source = URL(string: "https://jsonplaceholder.typicode.com/albums")!
-let resource = URLResource<[Album]>(url: source) { serverResponse in
-    guard let json = serverResponse as? [JSONDictionary] else { return nil }
-    return json.compactMap(Album.init)
+let resource = URLResource<[Album]>(url: source) { data in
+    try? JSONDecoder().decode([Album].self, from: data)
 }
 ```
 
@@ -81,9 +71,8 @@ let url = URL(string: "https://jsonplaceholder.typicode.com/albums")!
 var newAlbum = Parameters()
 newAlbum["userId"] = 1
 newAlbum["title"] = "foo"
-let newAlbumResource = URLResource<Album>(url: url, httpMethod: .post, parameters: newAlbum) { result in
-    guard let json = result as? JSONDictionary else { return nil }
-    return Album(json: json)
+let newAlbumResource = URLResource<Album>(url: url, httpMethod: .post, parameters: newAlbum) { data in
+    try? JSONDecoder().decode(Album.self, from: data)
 }
 let gateway = SlimGateway()
 gateway.request(urlResource: resource) { result in

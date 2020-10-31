@@ -6,30 +6,36 @@
 //  Copyright © 2018 Juanjo García Villaescusa. All rights reserved.
 //
 
-public protocol URLQueryRepresentable {
+protocol URLQueryRepresentable {
     var urlParamValue: String { get }
 }
 
 extension Int: URLQueryRepresentable {
-    public var urlParamValue: String {
+    var urlParamValue: String {
         String(self)
     }
 }
 
 extension Double: URLQueryRepresentable {
-    public var urlParamValue: String {
+    var urlParamValue: String {
         String(self)
     }
 }
 
 extension String: URLQueryRepresentable {
-    public var urlParamValue: String {
+    var urlParamValue: String {
         self
     }
 }
 
 extension Bool: URLQueryRepresentable {
-    public var urlParamValue: String {
+    var urlParamValue: String {
         self ? "true" : "false"
+    }
+}
+
+extension Array: URLQueryRepresentable where Element: URLQueryRepresentable {
+    var urlParamValue: String {
+        map { $0.urlParamValue }.joined(separator: ",")
     }
 }

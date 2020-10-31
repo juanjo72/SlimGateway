@@ -11,9 +11,13 @@
 		8127AE0C2098537E00262FB0 /* SlimGateway.h in Headers */ = {isa = PBXBuildFile; fileRef = 8127ADFE2098537E00262FB0 /* SlimGateway.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8127AE1D20985A1300262FB0 /* URLResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8127AE1C20985A1300262FB0 /* URLResource.swift */; };
 		8127AE1F2098610B00262FB0 /* TimeIntervalExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8127AE1E2098610B00262FB0 /* TimeIntervalExtensions.swift */; };
+		812BB722254D2822009E08C8 /* ResourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812BB721254D2822009E08C8 /* ResourceTests.swift */; };
+		812BB728254D2A35009E08C8 /* albums.json in Resources */ = {isa = PBXBuildFile; fileRef = 812BB727254D2A35009E08C8 /* albums.json */; };
+		812BB734254D3D10009E08C8 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812BB733254D3D10009E08C8 /* Album.swift */; };
 		812CCDAA213BC23800564191 /* URLRequestEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812CCDA9213BC23800564191 /* URLRequestEncoder.swift */; };
 		812CCDAE213BD90E00564191 /* URLQueryRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812CCDAD213BD90E00564191 /* URLQueryRepresentable.swift */; };
 		813B2ACC2158CD1A000E4FCD /* GatewayError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813B2ACB2158CD1A000E4FCD /* GatewayError.swift */; };
+		816E74CE254BE79C00E8FB76 /* RequestEncodersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816E74CD254BE79C00E8FB76 /* RequestEncodersTests.swift */; };
 		81FABEB7209F0E270092EEAC /* SlimGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FABEB6209F0E270092EEAC /* SlimGateway.swift */; };
 		81FABEBD209F0FF10092EEAC /* SlimGatewayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FABEBC209F0FF10092EEAC /* SlimGatewayTests.swift */; };
 /* End PBXBuildFile section */
@@ -29,7 +33,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		810B353221562577006E5AA1 /* URLEncoder.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = URLEncoder.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		8127ADFB2098537E00262FB0 /* SlimGateway.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SlimGateway.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8127ADFE2098537E00262FB0 /* SlimGateway.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SlimGateway.h; sourceTree = "<group>"; };
 		8127ADFF2098537E00262FB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -37,10 +40,13 @@
 		8127AE0B2098537E00262FB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8127AE1C20985A1300262FB0 /* URLResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLResource.swift; sourceTree = "<group>"; };
 		8127AE1E2098610B00262FB0 /* TimeIntervalExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalExtensions.swift; sourceTree = "<group>"; };
-		812CCDA5213AFE4100564191 /* urlcomponents.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = urlcomponents.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		812BB721254D2822009E08C8 /* ResourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceTests.swift; sourceTree = "<group>"; };
+		812BB727254D2A35009E08C8 /* albums.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = albums.json; sourceTree = "<group>"; };
+		812BB733254D3D10009E08C8 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		812CCDA9213BC23800564191 /* URLRequestEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestEncoder.swift; sourceTree = "<group>"; };
 		812CCDAD213BD90E00564191 /* URLQueryRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLQueryRepresentable.swift; sourceTree = "<group>"; };
 		813B2ACB2158CD1A000E4FCD /* GatewayError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatewayError.swift; sourceTree = "<group>"; };
+		816E74CD254BE79C00E8FB76 /* RequestEncodersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestEncodersTests.swift; sourceTree = "<group>"; };
 		81FABEB6209F0E270092EEAC /* SlimGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlimGateway.swift; sourceTree = "<group>"; };
 		81FABEBC209F0FF10092EEAC /* SlimGatewayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlimGatewayTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -67,10 +73,9 @@
 		8127ADF12098537E00262FB0 = {
 			isa = PBXGroup;
 			children = (
-				8127ADFD2098537E00262FB0 /* SlimGateway */,
-				8127AE082098537E00262FB0 /* SlimGatewayTests */,
+				8127ADFD2098537E00262FB0 /* Source */,
+				8127AE082098537E00262FB0 /* Tests */,
 				8127ADFC2098537E00262FB0 /* Products */,
-				8184D268213CFD76006C033E /* Playgrounds */,
 			);
 			sourceTree = "<group>";
 		};
@@ -83,7 +88,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8127ADFD2098537E00262FB0 /* SlimGateway */ = {
+		8127ADFD2098537E00262FB0 /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				81FABEB6209F0E270092EEAC /* SlimGateway.swift */,
@@ -95,25 +100,28 @@
 				8127ADFE2098537E00262FB0 /* SlimGateway.h */,
 				8127ADFF2098537E00262FB0 /* Info.plist */,
 			);
-			path = SlimGateway;
+			path = Source;
 			sourceTree = "<group>";
 		};
-		8127AE082098537E00262FB0 /* SlimGatewayTests */ = {
+		8127AE082098537E00262FB0 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				81FABEBC209F0FF10092EEAC /* SlimGatewayTests.swift */,
+				816E74CD254BE79C00E8FB76 /* RequestEncodersTests.swift */,
+				812BB721254D2822009E08C8 /* ResourceTests.swift */,
+				812BB74E254D4F03009E08C8 /* Resources */,
 				8127AE0B2098537E00262FB0 /* Info.plist */,
 			);
-			path = SlimGatewayTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
-		8184D268213CFD76006C033E /* Playgrounds */ = {
+		812BB74E254D4F03009E08C8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				810B353221562577006E5AA1 /* URLEncoder.playground */,
-				812CCDA5213AFE4100564191 /* urlcomponents.playground */,
+				812BB733254D3D10009E08C8 /* Album.swift */,
+				812BB727254D2A35009E08C8 /* albums.json */,
 			);
-			path = Playgrounds;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,7 +181,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1210;
 				ORGANIZATIONNAME = "Juanjo García Villaescusa";
 				TargetAttributes = {
 					8127ADFA2098537E00262FB0 = {
@@ -217,6 +225,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				812BB728254D2A35009E08C8 /* albums.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,7 +249,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				816E74CE254BE79C00E8FB76 /* RequestEncodersTests.swift in Sources */,
+				812BB722254D2822009E08C8 /* ResourceTests.swift in Sources */,
 				81FABEBD209F0FF10092EEAC /* SlimGatewayTests.swift in Sources */,
+				812BB734254D3D10009E08C8 /* Album.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +293,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -307,7 +320,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -344,6 +357,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -364,7 +378,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -381,12 +395,13 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = ZV4G4K6D9Y;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = SlimGateway/Info.plist;
+				INFOPLIST_FILE = Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -409,12 +424,13 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = ZV4G4K6D9Y;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = SlimGateway/Info.plist;
+				INFOPLIST_FILE = Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -436,7 +452,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3Y3H33SRAT;
-				INFOPLIST_FILE = SlimGatewayTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -455,7 +471,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3Y3H33SRAT;
-				INFOPLIST_FILE = SlimGatewayTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
