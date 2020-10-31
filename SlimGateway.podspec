@@ -8,7 +8,7 @@ Pod::Spec.new do |spec|
   spec.source              = { :git => "https://github.com/juanjo72/SlimGateway.git", :tag => "#{spec.version}" }
   
  
-  spec.source_files        = "Sources/*.{swift,m,h}"
+  spec.source_files        = "Source/*.{swift,m,h}"
 
   spec.ios.deployment_target = "10.0"
   spec.osx.deployment_target = "10.13"
