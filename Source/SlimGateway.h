@@ -6,8 +6,6 @@
 //  Copyright © 2018 Juanjo García Villaescusa. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 //! Project version number for SlimGateway.
 FOUNDATION_EXPORT double SlimGatewayVersionNumber;
 
