@@ -42,6 +42,3 @@ node_modules/
 # all-contributors
 .all-contributorsrc
 
-
-XceedTests.swift
-SlimGatewayTests/keys.plist
