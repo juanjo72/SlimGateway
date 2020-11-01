@@ -33,13 +33,13 @@ import SlimGateway
 Define your entity
 
 ```swift
-struct Album: Encodable {
+struct Album: Decodable {
     let id: Int
     let title: String
 }
 ```
 
-Create the URLResource that includes the decoding closure:
+Create the URLResource with the decoding closure:
 
 ```swift
 let source = URL(string: "https://jsonplaceholder.typicode.com/albums")!
