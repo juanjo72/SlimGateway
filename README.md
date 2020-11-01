@@ -68,7 +68,7 @@ To create a new album we set up a resource as the following:
 
 ```swift
 let url = URL(string: "https://jsonplaceholder.typicode.com/albums")!
-var newAlbum = Parameters()
+var newAlbum = [String: Any]()
 newAlbum["userId"] = 1
 newAlbum["title"] = "foo"
 let newAlbumResource = URLResource<Album>(url: url, httpMethod: .post, parameters: newAlbum) { data in

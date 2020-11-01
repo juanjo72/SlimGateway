@@ -25,6 +25,10 @@ public final class SlimGateway {
         return session
     }()
     
+    // MARK: Lifecycle
+    
+    public init() {}
+    
     // MARK: Public Methods
     
     /**
